@@ -75,13 +75,9 @@ public class InstanceOf {
 		
 		LiveOnAir callBat2 = new Bat();
 		call(callBat2); // LiveOnAir.fly & Bat.hang
-System.out.println("sda");
+		
 		Bat callBat3 = new Bat();
 		call(callBat3); // LiveOnAir.fly & Bat.hang
-
-		
-		
-		
 	}
 	
 	public static void call(Animal animal) {
