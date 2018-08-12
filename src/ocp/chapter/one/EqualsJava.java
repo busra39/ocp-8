@@ -12,6 +12,7 @@ public class EqualsJava {
 		Dummy d2 = new Dummy(1);
 		System.out.println(d1 == d2); // false
 		System.out.println(d1.equals(d2)); // false - Dummy does not override equals, uses Object's
+		System.out.println(d1.equals(null)); // false
 		
 		StringBuilder sb1 = new StringBuilder("aa");
 		StringBuilder sb2 = new StringBuilder("aa");
