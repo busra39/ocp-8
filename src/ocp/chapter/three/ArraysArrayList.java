@@ -1,0 +1,130 @@
+package ocp.chapter.three;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+public class ArraysArrayList {
+
+	public static void main(String[] args) {
+		int[] array = new int[2];
+		int array2[] = new int[2];
+		//int[] array3 = new int[]; // DOES NOT COMPILE
+		int[] array4[] = new int[1][2];
+		int[] array5[] = new int[2][];
+		array5[0] = new int[3];
+		array5[1] = new int[4];
+		String[] strArray = { "a", "b"};
+		String[][] strArray2 = {{ "a", "b"}, {"c"}};
+		
+		array[0] = 3;
+		System.out.println(array.length); // 2
+		System.out.println(array.toString()); // [address]
+		Wall w = new Wall("berlin");
+		Wall[] walls = new Wall[1];
+		walls[0] = w;
+		System.out.println(walls[0].getName()); // berlin
+		System.out.println(walls[0]); // berlin
+		
+		Chair[] chairArray = new Chair[1];
+		chairArray[0] = new Chair("Chair");
+		System.out.println(chairArray.toString()); // [Locp.chapter.three.Chair;@a14482
+		
+		List<String> list = new ArrayList<>();
+		list.add("eee");
+		//list.add(2); // DOES NOT COMPILE
+		
+		ArrayList list2 = new ArrayList();
+		list2.add("sss");
+		list2.add(3);
+		
+		ArrayList list3 = new ArrayList<>();
+		list3.add("sss");
+		list3.add(3);
+		
+		List list4 = new ArrayList<>();
+		list4.add("sss");
+		list4.add(3);
+		System.out.println(list4.size() + " " + list4.get(0) + " " + list4.get(1)); // 2 sss 3
+		
+		List<String> list5 = new ArrayList();
+		list5.add("sss");
+		//list5.add(3); // DOES NOT COMPILE
+		
+		//List<int> list = new ArrayList<>(); // does not take primitives //DOES NOT COMPILE
+		System.out.println(list2.toString()); // [sss, 3]
+		
+		List<Wall> walls2 = new ArrayList<>(2);
+		walls2.add(new Wall("wall1"));
+		walls2.add(new Wall("wall2"));
+		walls2.add(new Wall("wall3"));
+		System.out.println(walls2.size()); // 3
+		List<Wall> walls3 = new ArrayList<>(walls2);
+		System.out.println(walls3.get(1)); // wall2
+		walls2.set(1, new Wall("empty"));
+		System.out.println(walls3.get(1)); // wall2
+		
+		List<Chair> chairs = new ArrayList<>();
+		chairs.add(new Chair("chair"));
+		System.out.println(chairs.toString()); // [ocp.chapter.three.Chair@a14482] // toString is not overridden
+		
+		Wall[] wallArray = { new Wall("berlin"), new Wall("china"), new Wall("rome")};
+		List<Wall> wallList = Arrays.asList(wallArray);
+		System.out.println(wallList.toString()); // [berlin, china, rome]
+		wallList.set(0, new Wall("broken"));
+		System.out.println(wallList.get(0) + " " + wallArray[0]); // broken broken
+		wallArray[1] = new Wall("empty");
+		System.out.println(wallList.get(1) + " " + wallArray[1]); // empty empty
+		//wallList.remove(0); // java.lang.UnsupportedOperationException
+		
+		Wall[] newWallArray = (Wall[])wallList.toArray(); // without cast DOES NOT COMPILE
+		System.out.println(newWallArray[0]); // broken
+		newWallArray[2] = new Wall("superWall");
+		System.out.println(wallList.get(2) + " " + wallArray[2] + " " + newWallArray[2]); // rome rome superWall
+		//wallList.add(new Wall("new")); // java.lang.UnsupportedOperationException
+		
+		
+		String[] words = { "apple", "pineapple", "applejuice", "banana", "orange" };
+		Arrays.sort(words);
+		System.out.println(Arrays.toString(words)); // [apple, applejuice, banana, orange, pineapple]
+		System.out.println(Arrays.binarySearch(words, "banana")); // 2
+		System.out.println(Arrays.binarySearch(words, "kiwi")); // -4
+		
+		List<String> wordList = Arrays.asList("mercedes", "bmw", "seat", "audi");
+		Collections.sort(wordList);
+		System.out.println(wordList); // [audi, bmw, mercedes, seat]
+		System.out.println(Collections.binarySearch(wordList, "seat")); // 3
+		System.out.println(Collections.binarySearch(wordList, "fiat")); // -3
+	}
+
+}
+class Chair {
+	private String type;
+	
+	public Chair(String type) {
+		this.type = type;
+	}
+
+	public String getName() {
+		return type;
+	}
+}
+
+class Wall {
+	private String name;
+	
+	public Wall(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}
+}
