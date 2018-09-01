@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.NavigableMap;
+import java.util.NavigableSet;
 import java.util.Queue;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class CollectionsJava {
 
@@ -88,6 +91,36 @@ public class CollectionsJava {
 		System.out.println(list.lastIndexOf("happy")); // -1
 		System.out.println(list.set(1, "airbus")); // mercedes
 		System.out.println(list); // [audi, airbus, hyundai, bmw, bmw]
+		
+		set.clear();
+		set.add("10");
+		set.add("20");
+		set.add("11");
+		set.add("12");
+		set.add("22");
+		System.out.println(set); // [11, 22, 12, 20, 10]
+		
+		Set<String> treeSet = new TreeSet<>();
+		treeSet.add("10");
+		treeSet.add("20");
+		treeSet.add("11");
+		treeSet.add("12");
+		treeSet.add("22");
+		System.out.println(treeSet); // [10, 11, 12, 20, 22]
+		
+		NavigableSet<String> navSet = new TreeSet<>();
+		navSet.add("10");
+		navSet.add("20");
+		navSet.add("11");
+		navSet.add("12");
+		navSet.add("22");
+		System.out.println(navSet); // [10, 11, 12, 20, 22]
+		
+		System.out.println(navSet.lower("12")); // 11
+		System.out.println(navSet.floor("12")); // 12
+		System.out.println(navSet.ceiling("12")); // 12
+		System.out.println(navSet.higher("12")); // 20
+		System.out.println(navSet.higher("22")); // null
 	}
 
 }
