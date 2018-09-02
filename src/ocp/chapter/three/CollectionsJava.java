@@ -1,5 +1,6 @@
 package ocp.chapter.three;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -8,6 +9,7 @@ import java.util.NavigableMap;
 import java.util.NavigableSet;
 import java.util.Queue;
 import java.util.Set;
+import java.util.Stack;
 import java.util.TreeSet;
 
 public class CollectionsJava {
@@ -99,6 +101,7 @@ public class CollectionsJava {
 		set.add("12");
 		set.add("22");
 		System.out.println(set); // [11, 22, 12, 20, 10]
+		set.add(null);
 		
 		Set<String> treeSet = new TreeSet<>();
 		treeSet.add("10");
@@ -107,6 +110,7 @@ public class CollectionsJava {
 		treeSet.add("12");
 		treeSet.add("22");
 		System.out.println(treeSet); // [10, 11, 12, 20, 22]
+		// treeSet.add(null); //NullPointerException
 		
 		NavigableSet<String> navSet = new TreeSet<>();
 		navSet.add("10");
@@ -121,6 +125,67 @@ public class CollectionsJava {
 		System.out.println(navSet.ceiling("12")); // 12
 		System.out.println(navSet.higher("12")); // 20
 		System.out.println(navSet.higher("22")); // null
+		
+		Stack<String> stack = new Stack<>();
+		System.out.println(stack.add("apple")); // true
+		System.out.println(stack.push("lemon")); // lemon
+		System.out.println(stack); // [Apple, lemon]
+		System.out.println(stack.elementAt(1)); // lemon
+		System.out.println(stack.peek()); //lemon
+		System.out.println(stack.pop()); // lemon
+		System.out.println(stack.pop()); // apple
+		System.out.println(stack.empty()); // true
+		
+		q.clear();
+		System.out.println(q.add("red")); // true
+		System.out.println(q.add("green")); // true
+		System.out.println(q.peek()); // red
+		System.out.println(q.element()); // red
+		System.out.println(q.poll()); // red
+		System.out.println(q.poll()); // green
+		System.out.println(q.size()); // 0
+		System.out.println(q.peek()); // null
+		System.out.println(q.poll()); // null
+		//System.out.println(q.element()); // NoSuchElementException
+		System.out.println(q.offer("red")); // true
+		System.out.println(q); // [red]
+		System.out.println(q.remove("blue")); // false
+		System.out.println(q.remove("red")); // true
+		System.out.println(q.remove("ss")); // false
+		
+		ArrayDeque<String> deque = new ArrayDeque<>();
+		System.out.println(deque.add("chair")); // true
+		deque.push("table");
+		System.out.println(deque); // [table, chair]
+		deque.push("mirror");
+		System.out.println(deque); // [mirror, table, chair]
+		System.out.println(deque.peek()); // mirror
+		System.out.println(deque.peekFirst()); // mirror
+		System.out.println(deque.peekLast()); // chair
+		System.out.println(deque.pop()); // mirror
+		System.out.println(deque); // [table, chair]
+		System.out.println(deque.poll()); // table
+		System.out.println(deque); // [chair]
+		deque.push("bed");
+		deque.add("tv");
+		System.out.println(deque); // [bed, chair, tv]
+		System.out.println(deque.pollFirst()); // bed
+		System.out.println(deque.pollLast()); // tv
+		System.out.println(deque); // [chair]
+		deque.add("fridge");
+		System.out.println(deque); // [chair, fridge]
+		System.out.println(deque.remove()); // chair
+		System.out.println(deque); // [fridge]
+		System.out.println(deque.offer("empty"));
+		System.out.println(deque); // [fridge, empty]
+		deque.clear();
+		System.out.println(deque.peek()); // null
+		System.out.println(deque.poll()); // null
+		System.out.println(deque.pollFirst()); // null
+		System.out.println(deque.pollLast()); // null
+		System.out.println(deque.peekFirst()); // null
+		System.out.println(deque.peekLast()); // null
+		// deque.add(null); // NullPointerException
 	}
 
 }
